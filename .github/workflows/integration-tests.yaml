@@ -89,7 +89,7 @@ jobs:
         run: '[[ "${output}" == "${expected}" ]] || exit 1'
         env:
           output: ${{ steps.job.outputs.name }}
-          expected: ${{ github.job }}
+          expected: false
 
   test-matrix:
     name: Matrix
