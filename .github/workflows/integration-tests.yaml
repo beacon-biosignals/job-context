@@ -61,8 +61,8 @@ jobs:
           output: ${{ steps.job.outputs.name }}
           expected: test-empty-name
 
-  test-numeric-name:
-    name: 1
+  test-null-name:
+    name: null
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -74,7 +74,7 @@ jobs:
         run: '[[ "${output}" == "${expected}" ]] || exit 1'
         env:
           output: ${{ steps.job.outputs.name }}
-          expected: 1
+          expected: null
 
   test-matrix:
     name: Matrix
