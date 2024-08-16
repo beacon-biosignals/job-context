@@ -61,6 +61,21 @@ jobs:
           output: ${{ steps.job.outputs.name }}
           expected: test-empty-name
 
+  test-numeric-name:
+    name: 1
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: job
+      - name: Test job name
+        run: '[[ "${output}" == "${expected}" ]] || exit 1'
+        env:
+          output: ${{ steps.job.outputs.name }}
+          expected: 1
+
   test-matrix:
     name: Matrix
     runs-on: ubuntu-latest

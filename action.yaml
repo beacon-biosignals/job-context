@@ -36,8 +36,8 @@ runs:
 
         # e.g. octocat/hello-world/.github/workflows/my-workflow.yml@refs/heads/my_branch -> .github/workflows/my-workflow.yml
         workflow_path="$(echo "${workflow_ref%@*}" | cut -d/ -f3-)"
-        job_name_template="$(job_key="${job_key}" yq '.jobs[env(job_key)].name' "${repo_path}/${workflow_path:?}")"
-        echo "name-template=${job_name_template:?}" | tee -a "$GITHUB_OUTPUT"
+        job_name_template="$(job_key="${job_key}" yq '.jobs[env(job_key)].name // empty' "${repo_path}/${workflow_path:?}")"
+        echo "name-template=${job_name_template}" | tee -a "$GITHUB_OUTPUT"
       env:
         repo_path: ${{ inputs.path || format('{0}/repo', github.action_path) }}
         workflow_ref: ${{ github.workflow_ref }}
