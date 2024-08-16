@@ -46,6 +46,21 @@ jobs:
         env:
           job_id: ${{ steps.job.outputs.id }}
 
+  test-empty-name:
+    name: ""
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: job
+      - name: Test job name
+        run: '[[ "${output}" == "${expected}" ]] || exit 1'
+        env:
+          output: ${{ steps.job.outputs.name }}
+          expected: test-empty-name
+
   test-matrix:
     name: Matrix
     runs-on: ubuntu-latest
