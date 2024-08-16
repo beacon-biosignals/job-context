@@ -22,7 +22,7 @@ jobs:
           expected: test-default-name
       - name: Test job ID
         run: |
-          [[ "${job_id}" =~ '^[0-9]+$' ]] || exit 1
+          [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
         env:
           job_id: ${{ steps.job.outputs.id }}
 
@@ -42,7 +42,7 @@ jobs:
           expected: Custom Name
       - name: Test job ID
         run: |
-          [[ "${job_id}" =~ '^[0-9]+$' ]] || exit 1
+          [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
         env:
           job_id: ${{ steps.job.outputs.id }}
 
