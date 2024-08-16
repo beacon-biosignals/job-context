@@ -22,7 +22,7 @@ jobs:
           expected: test-default-name
       - name: Test job ID
         run: |
-          [[ "${job_id}" =~ '^[0-9]+$' ]] || exit 1"
+          [[ "${job_id}" =~ '^[0-9]+$' ]] || exit 1
         env:
           job_id: ${{ steps.job.outputs.id }}
 
@@ -42,7 +42,7 @@ jobs:
           expected: Custom Name
       - name: Test job ID
         run: |
-          [[ "${job_id}" =~ '^[0-9]+$' ]] || exit 1"
+          [[ "${job_id}" =~ '^[0-9]+$' ]] || exit 1
         env:
           job_id: ${{ steps.job.outputs.id }}
 
@@ -71,7 +71,7 @@ jobs:
         run: '[[ "${output}" == "${expected}" ]] || exit 1'
         env:
           output: ${{ steps.job.outputs.name }}
-          expected: "Job Name (${{ matrix.build.name }}, ${{ matrix.build.repo }}, ${{ matrix.version }})"
+          expected: Matrix (${{ matrix.build.name }}, ${{ matrix.build.repo }}, ${{ matrix.version }})
       - name: Test job name is distinct
         run: |
           jobs="$(gh api -X GET "/repos/{owner}/{repo}/actions/runs/${run_id:?}/attempts/${run_attempt:?}/jobs")"
@@ -105,7 +105,7 @@ jobs:
         run: '[[ "${output}" == "${expected}" ]] || exit 1'
         env:
           output: ${{ steps.job.outputs.name }}
-          expected: ${{ github.event_name }} -  - ${{ matrix.index }} - ${{ strategy.job-index }}
+          expected: Matrix Expression - ${{ github.event_name }} -  - ${{ matrix.index }} - ${{ strategy.job-index }}
       - name: Test job name is distinct
         run: |
           jobs="$(gh api -X GET "/repos/{owner}/{repo}/actions/runs/${run_id:?}/attempts/${run_attempt:?}/jobs")"
