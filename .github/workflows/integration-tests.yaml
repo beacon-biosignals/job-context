@@ -19,7 +19,7 @@ jobs:
         run: '[[ "${output}" == "${expected}" ]] || exit 1'
         env:
           output: ${{ steps.job.outputs.name }}
-          expected: test-default-name
+          expected: ${{ github.job }}
       - name: Test job ID
         run: |
           [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
@@ -74,7 +74,22 @@ jobs:
         run: '[[ "${output}" == "${expected}" ]] || exit 1'
         env:
           output: ${{ steps.job.outputs.name }}
-          expected: null
+          expected: ${{ github.job }}
+
+  test-false-name:
+    name: false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: job
+      - name: Test job name
+        run: '[[ "${output}" == "${expected}" ]] || exit 1'
+        env:
+          output: ${{ steps.job.outputs.name }}
+          expected: ${{ github.job }}
 
   test-matrix:
     name: Matrix
