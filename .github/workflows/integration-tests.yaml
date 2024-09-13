@@ -60,6 +60,11 @@ jobs:
         env:
           output: ${{ steps.job.outputs.name }}
           expected: test-empty-name  # ${{ github.job }}
+      - name: Test job ID
+        run: |
+          [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
+        env:
+          job_id: ${{ steps.job.outputs.id }}
 
   test-null-name:
     name: null
@@ -75,6 +80,11 @@ jobs:
         env:
           output: ${{ steps.job.outputs.name }}
           expected: test-null-name  # ${{ github.job }}
+      - name: Test job ID
+        run: |
+          [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
+        env:
+          job_id: ${{ steps.job.outputs.id }}
 
   test-false-name:
     name: false
@@ -90,6 +100,11 @@ jobs:
         env:
           output: ${{ steps.job.outputs.name }}
           expected: false  # ${{ github.job }}
+      - name: Test job ID
+        run: |
+          [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
+        env:
+          job_id: ${{ steps.job.outputs.id }}
 
   test-matrix:
     name: Matrix
@@ -117,6 +132,11 @@ jobs:
         env:
           output: ${{ steps.job.outputs.name }}
           expected: Matrix (${{ matrix.build.name }}, ${{ matrix.build.repo }}, ${{ matrix.version }})
+      - name: Test job ID
+        run: |
+          [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
+        env:
+          job_id: ${{ steps.job.outputs.id }}
       - name: Test job name is distinct
         run: |
           jobs="$(gh api -X GET "/repos/{owner}/{repo}/actions/runs/${run_id:?}/attempts/${run_attempt:?}/jobs")"
@@ -151,6 +171,11 @@ jobs:
         env:
           output: ${{ steps.job.outputs.name }}
           expected: Matrix Expression - ${{ github.event_name }} -  - ${{ matrix.index }} - ${{ strategy.job-index }}
+      - name: Test job ID
+        run: |
+          [[ "${job_id}" =~ ^[0-9]+$ ]] || exit 1
+        env:
+          job_id: ${{ steps.job.outputs.id }}
       - name: Test job name is distinct
         run: |
           jobs="$(gh api -X GET "/repos/{owner}/{repo}/actions/runs/${run_id:?}/attempts/${run_attempt:?}/jobs")"
