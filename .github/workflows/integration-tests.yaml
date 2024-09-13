@@ -209,3 +209,13 @@ jobs:
       - name: Action failed
         if: ${{ steps.job.outcome != 'failure' }}
         run: exit 1
+      - name: Test job name
+        run: '[[ "${output}" == "${expected}" ]] || exit 1'
+        env:
+          output: ${{ steps.job.outputs.name }}
+          expected: test-ambiguous
+      - name: Test job ID empty
+        run: |
+          [[ -z "${job_id}" ]] || exit 1
+        env:
+          job_id: ${{ steps.job.outputs.id }}
