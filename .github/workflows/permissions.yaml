@@ -1,0 +1,16 @@
+---
+name: Permissions
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/permissions.yaml"
+
+jobs:
+  remove-label:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Remove label
+        env:
+          PR: ${{ github.event.number }}
+        run: gh pr edit "${PR:?}" --remove-label "blocked"
