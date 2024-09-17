@@ -8,8 +8,10 @@ on:
 jobs:
   remove-label:
     runs-on: ubuntu-latest
-    permissions: {}
+    permissions:
+      contents: read
     steps:
+      - uses: actions/checkout@v4
       - name: Remove label
         run: gh pr edit "${PR:?}" --remove-label "blocked"
         env:
