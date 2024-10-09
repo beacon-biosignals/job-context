@@ -98,6 +98,7 @@ runs:
         fi
       env:
         GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
         run_id: ${{ github.run_id }}
         run_attempt: ${{ github.run_attempt }}
         job_name: ${{ steps.render.outputs.name }}
