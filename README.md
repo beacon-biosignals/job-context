@@ -50,5 +50,5 @@ The follow [job permissions](https://docs.github.com/en/actions/using-jobs/assig
 
 ```yaml
 permissions:
-  context: read
+  contents: read
 ```
