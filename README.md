@@ -18,6 +18,7 @@ jobs:
     # These permissions are needed to:
     # - Use `job-context`: https://github.com/beacon-biosignals/job-context#permissions
     permissions:
+      actions: read
       contents: read
     runs-on: ubuntu-latest
     strategy:
@@ -50,5 +51,6 @@ The following [job permissions](https://docs.github.com/en/actions/using-jobs/as
 
 ```yaml
 permissions:
+  actions: read  # Required for non-public repositories
   contents: read
 ```
