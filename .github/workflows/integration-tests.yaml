@@ -236,7 +236,7 @@ jobs:
       contents: read
     steps:
       - id: dynamic-job
-        uses: jenseng/dynamic-uses@02f544690a931f3967153cd5f14679cfeb61f830 # v1
+        uses: jenseng/dynamic-uses@f972650db6e7523890d27533271417f58681cf5b # v1
         with:
           uses: beacon-biosignals/job-context@${{ github.event.pull_request.head.sha || github.sha }}  # Always use HEAD commit
       - name: Test job name
