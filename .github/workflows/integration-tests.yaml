@@ -13,7 +13,7 @@ jobs:
       actions: read
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
       - name: Test job name
@@ -34,7 +34,7 @@ jobs:
       actions: read
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
       - name: Test job name
@@ -55,7 +55,7 @@ jobs:
       actions: read
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
       - name: Test job name
@@ -76,7 +76,7 @@ jobs:
       actions: read
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
       - name: Test job name
@@ -97,7 +97,7 @@ jobs:
       actions: read
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
       - name: Test job name
@@ -129,7 +129,7 @@ jobs:
           - "1.0"
           - "2.0"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
       - name: Test job name
@@ -168,7 +168,7 @@ jobs:
           - 1
           - 2
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
       - name: Test job name
@@ -208,7 +208,7 @@ jobs:
           - 1
           - 2
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         id: job
         continue-on-error: true
