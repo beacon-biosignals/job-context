@@ -18,7 +18,7 @@ runs:
   steps:
     # In order to determine the job name we'll extract the non-rendered job name from the workflow and then evaulate
     # any expressions contained within. Using `action/checkout` requires that we set the path under `$GITHUB_WORSPACE`.
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       id: checkout
       with:
         ref: ${{ github.workflow_sha }}
